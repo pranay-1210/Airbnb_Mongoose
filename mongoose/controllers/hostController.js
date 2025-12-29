@@ -3,7 +3,7 @@ const Home = require("./../models/Home");
 exports.getAddHome = (req, res) => {
   res.render("host/edit-home", {
     editing: false,
-    pagetTitle: "Host Your Home",
+    pageTitle: "Host Your Home",
   });
 };
 
@@ -25,7 +25,7 @@ exports.getEditHome = (req, res) => {
     res.render("host/edit-home", {
       home: home,
       editing: editing,
-      pagetTitle: "Edit your Home",
+      pageTitle: "Edit your Home",
     });
   });
 };
@@ -44,7 +44,7 @@ exports.getHostHomes = (req, res, next) => {
   Home.find().then(registeredHomes => {
     res.render("host/host-homes", {
       homes: registeredHomes,
-      pagetTitle: "Host Homes",
+      pageTitle: "Host Homes",
     });
   });
 };
