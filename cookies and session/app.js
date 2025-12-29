@@ -1,8 +1,11 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
 const bodyParser = require("body-parser");
 const path = require("path");
 
 const { hostRouter } = require("./routers/hostRouter");
+const { authRouter } = require("./routers/authRouter");
 const storeRouter = require("./routers/storeRouter");
 const rootDir = require("./util/path-util");
 
@@ -30,12 +33,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(storeRouter);
 app.use("/host",hostRouter);
+app.use(authRouter);
 
 
 
 app.use(errorController.get404);
 
-const mongoose = require("mongoose");
 const PORT = 3001;
 
 const MONGO_DB_URL =
