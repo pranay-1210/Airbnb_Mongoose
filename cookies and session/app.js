@@ -28,10 +28,23 @@ app.use(express.static(path.join(rootDir, "public")));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  req.isLoggedIn = false;
+  next();
+});
+
 
 
 
 app.use(storeRouter);
+app.use("/host", (req, res, next) => {
+  if (!req.isLoggedIn) {
+    return res.redirect("/login");
+
+  }
+  next();
+  
+})
 app.use("/host",hostRouter);
 app.use(authRouter);
 
