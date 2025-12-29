@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
+const session = require("express-session");
 const path = require("path");
 
 const { hostRouter } = require("./routers/hostRouter");
@@ -28,18 +29,17 @@ app.use(express.static(path.join(rootDir, "public")));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
-  console.log(req.get('Cookie'));
-  req.isLoggedIn = req.get('Cookie').split('=')[1] === 'true';
-  next();
-});
-
+app.use(session({
+  secret: "my secret",
+  resave: false,
+  saveUninitialized: true,
+}));
 
 
 
 app.use(storeRouter);
 app.use("/host", (req, res, next) => {
-  if (!req.isLoggedIn) {
+  if (!req.session.isLoggedIn) {
     return res.redirect("/login");
 
   }
