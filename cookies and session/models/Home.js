@@ -10,7 +10,7 @@ const homeSchema = new mongoose.Schema({
   description: String,
 });
 
-homeSchema.pre("findOneAndDelete", (next) => {
+homeSchema.pre("findOneAndDelete", function(next) {
   const homeId = this.getQuery()["_id"];
   console.log(homeId);
 

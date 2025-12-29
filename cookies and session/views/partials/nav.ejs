@@ -4,11 +4,12 @@
         <a href="/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">
            Airbnb
         </a>
-        <a href="/homes" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">
-          Homes
-        </a>
+        
 
         <% if (isLoggedIn) { %>
+          <a href="/homes" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">
+          Homes
+          </a>
           <a href="/favourites" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">
             favourites
           </a>
@@ -20,13 +21,20 @@
           </a>
         <% } %>
 
-        <a href="/login" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">
-          Login
-        </a>
-
-
         
+        <% if (isLoggedIn) { %>
+          <form action="/logout" method="POST" class="ml-auto">
+            <input type="submit" value="Logout" class=" px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg" />
+          </form>
+
+          <% } else { %>
+            <a href="/login" class="ml-auto px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">Login
+
+            </a>
+          <% } %>
+
       </div>
+
 
     </nav>
   </header>
